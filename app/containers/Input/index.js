@@ -22,8 +22,6 @@ export default class Index extends React.PureComponent { // eslint-disable-line 
 
   _onFileDrop(e) {
 
-    console.log(e);
-
     if (!e.target.files) {
 
       window.alert('No files object attached to target');
@@ -94,6 +92,8 @@ export default class Index extends React.PureComponent { // eslint-disable-line 
         ];
 
         results.data.forEach((row) => {
+
+          if (row.length < 29) return;
 
           newFile.push([
             row[3].toUpperCase(), // orderId
