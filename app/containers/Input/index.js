@@ -22,6 +22,24 @@ export default class Index extends React.PureComponent { // eslint-disable-line 
 
   _onFileDrop(e) {
 
+    console.log(e);
+
+    if (!e.target.files) {
+
+      window.alert('No files object attached to target');
+
+      return false;
+
+    }
+
+    if (!e.target.files.length) {
+
+      window.alert('No files count in target array');
+
+      return false;
+
+    }
+
     const droppedFile = e.target.files[0];
 
     if (droppedFile.name.split('.')[1] !== 'csv') return window.alert('File must be csv foooooooooooo');
@@ -29,6 +47,14 @@ export default class Index extends React.PureComponent { // eslint-disable-line 
     Papa.parse(e.target.files[0], {
 
       complete: (results) => {
+
+        if (!results.data || !results.data.length) {
+
+          window.alert('Could not parse file, GODDAMMMN IT');
+
+          return false;
+
+        }
 
         results.data.shift();
 
@@ -119,6 +145,8 @@ export default class Index extends React.PureComponent { // eslint-disable-line 
         window.URL.revokeObjectURL(url);
 
         // console.log('Finished:', newFile);
+
+        return false;
 
       },
 
