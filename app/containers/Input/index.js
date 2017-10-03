@@ -70,7 +70,7 @@ export default class Index extends React.PureComponent { // eslint-disable-line 
         results.data.forEach((row) => {
 
           newFile.push([
-            row[1], // orderId
+            row[3].toUpperCase(), // orderId
             row[2], // Order Date
             'geoff@offlineinc.com', // email
             row[4], // first name
@@ -93,7 +93,7 @@ export default class Index extends React.PureComponent { // eslint-disable-line 
             row[8], // ship date
             '', // cancel date
             'USD', // currency
-            '', // tags
+            'FashionGo', // tags
             'Import from fashion go', // notes
             row[24], // sku
             row[28], // quantity
@@ -114,7 +114,7 @@ export default class Index extends React.PureComponent { // eslint-disable-line 
         document.body.appendChild(a);
 
         a.href = url;
-        a.download = 'stitchLabs.csv';
+        a.download = `stitchLabs - ${new Date()}.csv`;
         a.click();
         window.URL.revokeObjectURL(url);
 
